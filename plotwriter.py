@@ -5,19 +5,6 @@ from nltk import tokenize
 import sys
 import json
 import markovify
-import tweepy
-
-
-TWITTER_CONSUMER_KEY = 'DXdbE0wTlHxEFaGkv8RAlQuao'
-TWITTER_CONSUMER_SECRET = '5ZLygS0lYZLByXhoChTItOn0C4M4We6VAYLM5CDPW8VfRtkHMx'
-TWITTER_ACCESS_KEY = '854476066873683968-mhz3oInLa7pIJLGJiIyYLWDM0s96Zuk'
-TWITTER_ACCESS_SECRET = 'tH4433OTMdBKb5LqXW54kzTVSIOn90bGdVVMi93PE7vXa'
-
-auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
-auth.set_access_token(TWITTER_ACCESS_KEY, TWITTER_ACCESS_SECRET)
-
-twitter = tweepy.API(auth)
-
 
 URL = 'https://www.helpingwritersbecomeauthors.com/book-storystructure/story-structure-database-index/'
 
@@ -157,13 +144,6 @@ def build_model(plot_dict):
 def build_sentence(model):
     sentence = model.make_sentence()
     return sentence
-
-# def build_tweet(plot_point, model):
-#     tweet_tag = plot_point + ': '
-#     tweet_length = (140 - len(tweet_tag))
-#     sentence = model.make_short_sentence(tweet_length)
-#     tweet = tweet_tag + sentence
-#     return tweet
 
 
 def get_plot_dict():
