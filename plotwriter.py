@@ -34,6 +34,19 @@ plot_points = [
     'Notes',
 ]
 
+query_formats = [
+    'inciting-event',
+    'first-plot-point',
+    'first-pinch-point',
+    'midpoint',
+    'second-pinch-point',
+    'third-plot-point',
+    'climax',
+    'climactic-moment',
+    'resolution',
+    'notes',
+]
+
 ignore = [
     'https://www.helpingwritersbecomeauthors.com/book-storystructure/story-structure-database-index/#books',
     'https://www.helpingwritersbecomeauthors.com/book-storystructure/story-structure-database-index/#movies',
@@ -179,6 +192,8 @@ def get_model(plot_point):
 def main():
     if len(sys.argv) > 1:
         plot_point = sys.argv[1]
+        if plot_point in query_formats:
+            plot_point = plot_point.replace('-', '_') + '_model.json'
         model = get_model(plot_point)
         sentence = build_sentence(model)
         print(sentence)
