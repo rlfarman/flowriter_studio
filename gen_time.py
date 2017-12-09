@@ -8,6 +8,7 @@ import time
 
 import rosswriter as rwriter
 import plotwriter as pwriter
+import lyricwriter as lwriter
  
 from flask import Flask, request
  
@@ -22,6 +23,11 @@ def gen_ross():
 @app.route("/pwriter/<string:ppoint>", methods=["GET"])
 def gen_plot(ppoint):
     sentence = pwriter.main(ppoint)
+    return(sentence)
+
+@app.route("/lwriter/<string:iartist>", methods=["GET"])
+def gen_lyrics(iartist):
+    sentence = lwriter.main(iartist)
     return(sentence)
 
 @app.route("/timestamp", methods=["GET"])
