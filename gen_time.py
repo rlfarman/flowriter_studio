@@ -5,13 +5,20 @@ script to give datetime and millisecond time conversion functionality
 import datetime
 import json
 import time
+
+import rosswriter as rwriter
  
 from flask import Flask, request
  
 # this is how we initialize a flask application
 app = Flask(__name__)
  
- 
+@app.route("/rwriter", methods=["GET"])
+def gen_ross():
+    sentence = rwriter.main()
+    return(sentence)
+
+
 @app.route("/timestamp", methods=["GET"])
 def get_timesptamp_millis():
     """
