@@ -7,6 +7,7 @@ import json
 import time
 
 import rosswriter as rwriter
+import plotwriter as pwriter
  
 from flask import Flask, request
  
@@ -18,6 +19,10 @@ def gen_ross():
     sentence = rwriter.main()
     return(sentence)
 
+@app.route("/pwriter/<string:ppoint>", methods=["GET"])
+def gen_plot(ppoint):
+    sentence = pwriter.main(ppoint)
+    return(sentence)
 
 @app.route("/timestamp", methods=["GET"])
 def get_timesptamp_millis():

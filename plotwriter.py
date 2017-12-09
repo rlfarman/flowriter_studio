@@ -169,14 +169,15 @@ def get_model(plot_point):
     return model
 
 
-def main():
-    if len(sys.argv) > 1:
-        plot_point = sys.argv[1]
+def main(ppoint):
+    #if len(argl) > 1:
+    if ppoint:
+        plot_point = ppoint
         if plot_point in query_formats:
             plot_point = plot_point.replace('-', '_') + '_model.json'
         model = get_model(plot_point)
         sentence = build_sentence(model)
-        print(sentence)
+        #print(sentence)
         return sentence
     else:
         plot_dict = get_plot_dict()
