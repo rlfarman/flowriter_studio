@@ -163,8 +163,13 @@ def main(iartist):
     # print("Generating lyrics for you...")
 
     sentence = make_sentence(model)
-    return(sentence)
+    return sentence
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) > 1:
+        q = sys.argv[1]
+    else:
+        sys.exit(1)
+    sentence = main(q)
+    print(sentence)
