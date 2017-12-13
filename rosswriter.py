@@ -52,4 +52,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sentence = main()
+    print(sentence)
