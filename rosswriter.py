@@ -47,7 +47,7 @@ def build_sentence(model):
 def main():
     model = get_model()
     sentence = build_sentence(model)
-    print(sentence)
+    #print(sentence)
     return sentence
 
 
