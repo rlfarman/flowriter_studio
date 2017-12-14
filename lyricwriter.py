@@ -1,4 +1,5 @@
 import sys
+import logging
 import json
 import lyricwikia
 import markovify
@@ -7,6 +8,9 @@ from math import ceil
 from textstat.textstat import textstat
 from spotipy.oauth2 import SpotifyClientCredentials
 
+
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger(__name__)
 
 SPOTIFY_ID = '9a9ec3dbfd0b43c2aeb707c252d5105b'
 SPOTIFY_SECRET = '2306e2187d8847569ffba7cd75a8abc4'
@@ -62,9 +66,9 @@ def get_lyrics(artists, track):
 # Return a set of unique lyrics from an artist's tracks.
 def get_artist_lyrics(artist_id):
     artist_albums = get_artist_albums(artist_id)
-    # print(len(artist_albums), 'albums found...')
+    log.info(len(artist_albums), 'albums found...')
     album_tracks = get_album_tracks(artist_albums)
-    # print(len(album_tracks), 'tracks found...')
+    log.info(len(album_tracks), 'tracks found...')
     lyrics = []
     for track in album_tracks:
         artists = track['artists']
@@ -79,7 +83,7 @@ def get_artist_lyrics(artist_id):
 
 # Builds a markov model for an artist
 def build_model(artist_id):
-    # print("Generating a new model, this may take awhile...")
+    log.info("Generating a new model, this may take awhile...")
     lyrics = get_artist_lyrics(artist_id)
     model = markovify.NewlineText(lyrics)
     write_model(model, artist_id)
@@ -158,9 +162,9 @@ def main(iartist):
     else:
         return("Could not find", iartist)
 
-    # print("Artist", artist_name, "found, searching for lyrics")
+    log.info("Artist", artist_name, "found, searching for lyrics")
     model = get_model(artist_id)
-    # print("Generating lyrics for you...")
+    log.info("Generating lyrics for you...")
 
     sentence = make_sentence(model)
     return sentence
