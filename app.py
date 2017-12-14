@@ -19,13 +19,13 @@ def gen_ross():
 def gen_plot(plot_point):
     """Takes a plot point as an arguement: inciting-event, first-plot-point, first-pinch-point, midpoint, 
         second-pinch-point, third-plot-point, climax, climactic-moment, resolution, or notes. Returns a generated plot point."""
-    sentence = pwriter.main(ppoint)
+    sentence = pwriter.main(plot_point)
     return(sentence)
 
 @app.route("/lyric/<string:artist>", methods=["GET"])
 def gen_lyrics(artist):
     """Takes an artist name as an input. Returns three lines of generated lyrics based on the artist."""
-    sentence = lwriter.main(iartist)
+    sentence = lwriter.main(artist)
     return(sentence)
 
 
