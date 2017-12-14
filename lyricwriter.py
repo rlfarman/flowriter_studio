@@ -147,22 +147,22 @@ def make_haiku(model, artist_name):
 
 
 # Main control flow.
-def main(iartist):
+def main(artist):
     #print("enter main")
-    if iartist:
+    if artist:
         #print(sys.argv)
-        q = iartist
+        q = artist
         artist = get_artist(q)
         #print(artist)
         if artist:
             #print(artist)
             artist_id = artist['id']
         else:
-            return("could not find", iartist)
+            return("could not find", artist)
     else:
-        return("Could not find", iartist)
+        return("Could not find", artist)
 
-    log.info("Artist", artist_name, "found, searching for lyrics")
+    log.info("Artist", artist, "found, searching for lyrics")
     model = get_model(artist_id)
     log.info("Generating lyrics for you...")
 
