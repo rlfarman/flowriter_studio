@@ -7,18 +7,18 @@ from flask import Flask, request
 # this is how we initialize a flask application
 app = Flask(__name__)
  
-@app.route("/rwriter", methods=["GET"])
+@app.route("/ross", methods=["GET"])
 def gen_ross():
     sentence = rwriter.main()
     return(sentence)
 
-@app.route("/pwriter/<string:ppoint>", methods=["GET"])
-def gen_plot(ppoint):
+@app.route("/plot/<string:plot_point>", methods=["GET"])
+def gen_plot(plot_point):
     sentence = pwriter.main(ppoint)
     return(sentence)
 
-@app.route("/lwriter/<string:iartist>", methods=["GET"])
-def gen_lyrics(iartist):
+@app.route("/lyric/<string:artist>", methods=["GET"])
+def gen_lyrics(artist):
     sentence = lwriter.main(iartist)
     return(sentence)
  
