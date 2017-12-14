@@ -16,13 +16,13 @@ def gen_ross():
     return(sentence)
 
 
-@app.route("/lyric/<string:ppoint>", methods=["GET"])
+@app.route("/plot/<string:ppoint>", methods=["GET"])
 def gen_plot(ppoint):
     sentence = pwriter.main(ppoint)
     return(sentence)
 
 
-@app.route("/plot/<string:iartist>", methods=["GET"])
+@app.route("/lyric/<string:iartist>", methods=["GET"])
 def gen_lyrics(iartist):
     sentence = lwriter.main(iartist)
     return(sentence)
