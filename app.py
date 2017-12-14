@@ -28,12 +28,14 @@ def gen_lyrics(artist):
     sentence = lwriter.main(artist)
     return(sentence)
 
+@app.errorhandler(404)
+def not_found(error):
+    """Handles 404 errors"""
+    return('error 404: Not found')
 
  
 if __name__ == "__main__":
-    """
-    this is run when the script is started.
-    """
+    """this is run when the script is started from the command line."""
 
-    # this is how we run the flask server, once the script is run
+    #this is how we run the flask server, once the script is run
     app.run(host='0.0.0.0', threaded=True)
