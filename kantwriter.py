@@ -1,3 +1,4 @@
+import sys
 import os.path
 import logging
 import urllib.request
@@ -154,3 +155,37 @@ def get_model(title):
     work_is_present(title, file_name)
     model = model_is_present(title)
     return model
+
+
+def get_sentence(title):
+    """Parameters: string that represents title in "available_works"
+    Returns: string of generated sentence for that title"""
+    model = get_model(title)
+    log.info('Making sentence from "%s"', title)
+    sentence = model.make_sentence()
+    return sentence
+
+
+def get_short_sentence(title):
+    """Parameters: string that represents title in "available_works"
+    Returns: string of generated short sentence for that title"""
+    n_chars = 140
+    model = get_model(title)
+    log.info('Making short sentence from "%s"', title)
+    sentence = model.make_short_sentence(n_chars)
+    return sentence
+
+
+def main(title):
+    """Parameters: string that represents title in "available_works"
+    Returns: none, prints sentence generated from that title"""
+    model = get_model(title)
+    print(model.make_sentence())
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        q = sys.argv[1]
+    else:
+        sys.exit(1)
+    sentence = main(q)
