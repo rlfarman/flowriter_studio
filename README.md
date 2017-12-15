@@ -1,6 +1,6 @@
 # Welcome to Flowriter
 
-### The api endpoints are at:</h3>
+### The API endpoints are at:</h3>
 + [/ross](https://flowriter.studio/ross)
 + [/plot/\<plot_point\>](https://flowriter.studio/climax)
     + Plot points are:
@@ -24,3 +24,7 @@
         + critique of practical reason
 + [/kant/short_sentence/\<string:title\>](https://flowriter.studio/kant/short_sentence/critique%20of%20pure%20reason)
 + [/kant/sentence/\<string:title\>](https://flowriter.studio/kant/sentence/critique%20of%20pure%20reason)
+
+### Deploying to server
+This API can be automatically deployed to a server using this Ansible code:
+https://github.com/kantsdog/flowriter_studio_deploy
