@@ -31,7 +31,7 @@ def gen_lyrics(artist):
 @app.errorhandler(404)
 def not_found(error):
     """Handles 404 errors"""
-    return('error 404: Not found')
+    return('error 404: Not found'), 404
 
  
 if __name__ == "__main__":
