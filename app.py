@@ -4,7 +4,7 @@ import lyricwriter as lwriter
 import promptwriter as prwriter
 import kantwriter as kwriter
 
-from flask import Flask, request, Markup
+from flask import Flask, request
 
 # this is how we initialize a flask application
 app = Flask(__name__)
@@ -12,7 +12,17 @@ app = Flask(__name__)
 @app.route("/", methods=["GET"])
 def home():
     """Creates the homepage"""
-    return(Markup("<div><h1>Welcome to Flowriter</h1></div><div><h3>The api endpoints are at: /ross , /plot/plot_point , /lyric/artist , and /prompt</h3></div>"))
+    return('''<div>
+                    <h1>Welcome to Flowriter</h1>
+              </div>
+              <div>
+                    <h3>The api endpoints are at:</h3>
+                    <ol><a href="/ross">/ross</a></ol>
+                    <ol><a href="/plot/climax">/plot/plot_point</a></ol>
+                    <ol><a href="/lyric/drake>"/lyric/artist</a></ol>
+                    <ol><a href="/prompt">/prompt</a></ol>
+              </div>'''
+            )
 
 @app.route("/ross", methods=["GET"])
 def gen_ross():
