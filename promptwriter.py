@@ -47,31 +47,8 @@ def generate_prompt():
 
     model = get_model(txt_file)
     sentence = make_sentence(model)
-    
+   
     return sentence
-
-    # sentences_list
-    # Get raw text as string.
-    
-    #with open(txt_file) as f:
-    #    text = f.read()
-
-    # Build the model.
-    #text_model = markovify.NewlineText(text)
-
-    # Print five randomly-generated sentences
-    #for i in range(5):
-        #print(text_model.make_sentence())
-
-    # Print three randomly-generated sentences of no more than 140 characters
-    #for i in range(3):
-        #print(text_model.make_short_sentence(140))
-
-    # Print three randomly-generated sentences of no more than 140 characters
-    #for i in range(num_sentences):
-    #    sentences_list.append(text_model.make_sentence(max_words=length))
-    
-    return(text_model.make_sentence())
 
 def main():
     """Generates a writing prompt"""
