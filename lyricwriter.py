@@ -1,4 +1,5 @@
 import sys
+import logging
 import json
 import lyricwikia
 import markovify
@@ -7,6 +8,9 @@ from math import ceil
 from textstat.textstat import textstat
 from spotipy.oauth2 import SpotifyClientCredentials
 
+
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger(__name__)
 
 SPOTIFY_ID = '9a9ec3dbfd0b43c2aeb707c252d5105b'
 SPOTIFY_SECRET = '2306e2187d8847569ffba7cd75a8abc4'
@@ -62,9 +66,10 @@ def get_lyrics(artists, track):
 # Return a set of unique lyrics from an artist's tracks.
 def get_artist_lyrics(artist_id):
     artist_albums = get_artist_albums(artist_id)
-    # print(len(artist_albums), 'albums found...')
+    log.info('%s albums found', len(artist_albums))
     album_tracks = get_album_tracks(artist_albums)
-    # print(len(album_tracks), 'tracks found...')
+    log.info('%s tracks found', len(album_tracks))
+    log.info('Downloading lyrics')
     lyrics = []
     for track in album_tracks:
         artists = track['artists']
@@ -79,9 +84,9 @@ def get_artist_lyrics(artist_id):
 
 # Builds a markov model for an artist
 def build_model(artist_id):
-    # print("Generating a new model, this may take awhile...")
     lyrics = get_artist_lyrics(artist_id)
     model = markovify.NewlineText(lyrics)
+    log.info('Generating new model')
     write_model(model, artist_id)
     return model
 
@@ -143,24 +148,24 @@ def make_haiku(model, artist_name):
 
 
 # Main control flow.
-def main(iartist):
+def main(artist):
     #print("enter main")
-    if iartist:
+    if artist:
         #print(sys.argv)
-        q = iartist
+        q = artist
         artist = get_artist(q)
         #print(artist)
         if artist:
             #print(artist)
             artist_id = artist['id']
         else:
-            return("could not find", iartist)
+            return("could not find", artist)
     else:
-        return("Could not find", iartist)
+        return("Could not find", artist)
 
-    # print("Artist", artist_name, "found, searching for lyrics")
+    log.info('Artist "%s" found, searching for lyrics', q)
     model = get_model(artist_id)
-    # print("Generating lyrics for you...")
+    log.info('Generating lyrics for "%s"', q)
 
     sentence = make_sentence(model)
     return sentence
