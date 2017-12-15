@@ -69,6 +69,7 @@ def get_artist_lyrics(artist_id):
     log.info('%s albums found', len(artist_albums))
     album_tracks = get_album_tracks(artist_albums)
     log.info('%s tracks found', len(album_tracks))
+    log.info('Downloading lyrics')
     lyrics = []
     for track in album_tracks:
         artists = track['artists']
