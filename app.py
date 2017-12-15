@@ -3,11 +3,15 @@ import plotwriter as pwriter
 import lyricwriter as lwriter
 import promptwriter as prwriter
 
-from flask import Flask, request
+from flask import Flask, request, Markup
 
 # this is how we initialize a flask application
 app = Flask(__name__)
 
+@app.route("/", methods=["GET"])
+def home():
+    """Creates the homepage"""
+    return(Markup("<div><h1>Welcome to Flowriter</h1></div><div><h3>The api endpoints are at: /ross , /plot/plot_point , /lyric/artist , and /prompt</h3></div>"))
 
 @app.route("/ross", methods=["GET"])
 def gen_ross():
@@ -30,7 +34,7 @@ def gen_lyrics(artist):
     return(sentence)
 
 @app.route("/prompt", methods=["GET"])
-def gen_lyrics():
+def gen_prompt():
     """Takes no input. Returns a generated writing prompt."""
     sentence = prwriter.main()
     return(sentence)
