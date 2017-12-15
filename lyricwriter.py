@@ -162,9 +162,9 @@ def main(artist):
     else:
         return("Could not find", artist)
 
-    log.info('Artist %s found, searching for lyrics', artist)
+    log.info('Artist %s found, searching for lyrics', q)
     model = get_model(artist_id)
-    log.info('Generating lyrics for %s', artist)
+    log.info('Generating lyrics for %s', q)
 
     sentence = make_sentence(model)
     return sentence
