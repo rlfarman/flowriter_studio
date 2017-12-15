@@ -66,9 +66,9 @@ def get_lyrics(artists, track):
 # Return a set of unique lyrics from an artist's tracks.
 def get_artist_lyrics(artist_id):
     artist_albums = get_artist_albums(artist_id)
-    log.info(len(artist_albums), 'albums found...')
+    log.info('%s albums found', len(artist_albums))
     album_tracks = get_album_tracks(artist_albums)
-    log.info(len(album_tracks), 'tracks found...')
+    log.info('%s tracks found', len(album_tracks))
     lyrics = []
     for track in album_tracks:
         artists = track['artists']
@@ -83,7 +83,7 @@ def get_artist_lyrics(artist_id):
 
 # Builds a markov model for an artist
 def build_model(artist_id):
-    log.info("Generating a new model, this may take awhile...")
+    log.info('Generating new model for %s', artist_id)
     lyrics = get_artist_lyrics(artist_id)
     model = markovify.NewlineText(lyrics)
     write_model(model, artist_id)
@@ -162,9 +162,9 @@ def main(artist):
     else:
         return("Could not find", artist)
 
-    log.info("Artist", artist, "found, searching for lyrics")
+    log.info('Artist %s found, searching for lyrics', artist)
     model = get_model(artist_id)
-    log.info("Generating lyrics for you...")
+    log.info('Generating lyrics for %s', artist)
 
     sentence = make_sentence(model)
     return sentence
