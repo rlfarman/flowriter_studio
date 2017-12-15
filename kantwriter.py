@@ -97,6 +97,20 @@ def work_is_present(title, file_name):
         return 0
 
 
+def model_is_present(title):
+    """Parameters: string that represents title in "available_works"
+    Returns: model object, ensures model is created at file get_model_name()"""
+    file_name = get_file_name(title)
+    model_name = get_model_name(title)
+    if os.path.isfile(model_name):
+        log.info('Model alredy present for "%s"', title)
+        model = read_model(model_name)
+    else:
+        log.info('Creating and saving model of %s to %s', title, model_name)
+        model =  build_model(file_name, model_name)
+    return model
+
+
 # Modified from lyricwriter module
 def build_model(file_name, model_name):
     """Parameters: file name of text to modeled
