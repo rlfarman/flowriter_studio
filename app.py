@@ -21,6 +21,9 @@ def home():
                     <ol><a href="/plot/climax">/plot/plot_point</a></ol>
                     <ol><a href="/lyric/drake>"/lyric/artist</a></ol>
                     <ol><a href="/prompt">/prompt</a></ol>
+                    <ol><a href="/kant/available">/kant/available</a></ol>
+                    <ol><a href="/kant/short_sentence/<string:title>">/kant/short_sentence/<string:title></a></ol>
+                    <ol><a href="/kant/sentence/<string:title>">/kant/sentence/<string:title></a></ol>
               </div>'''
             )
 
