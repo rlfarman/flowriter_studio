@@ -102,3 +102,7 @@ ENV/
 
 # json
 *.json
+
+# Vistual Studio Code
+.vscode
+.vscode/
