@@ -38,8 +38,8 @@ def get_titles():
 
 @app.route("/kant/short_sentence/<string:title>", methods=["GET"])
 def gen_kant_short_sentence(title):
-    title = title.lower()
-    if title.lower in kwriter.get_available_works():
+    work = title.lower()
+    if work in kwriter.get_available_works():
         sentence = kwriter.get_short_sentence(title)
         return(sentence)
     else:
@@ -47,8 +47,8 @@ def gen_kant_short_sentence(title):
 
 @app.route("/kant/sentence/<string:title>", methods=["GET"])
 def gen_kant_sentence(title):
-    title = title.lower()
-    if title.lower in kwriter.get_available_works():
+    work = title.lower()
+    if work in kwriter.get_available_works():
         sentence = kwriter.get_sentence(title)
         return(sentence)
     else:
