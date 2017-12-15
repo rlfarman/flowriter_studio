@@ -2,6 +2,7 @@ import rosswriter as rwriter
 import plotwriter as pwriter
 import lyricwriter as lwriter
 import promptwriter as prwriter
+import kantwriter as kwriter
 
 from flask import Flask, request, Markup
 
@@ -39,10 +40,33 @@ def gen_prompt():
     sentence = prwriter.main()
     return(sentence)
 
+@app.route("/kant/available", methods=["GET"])
+def get_titles():
+    """Return list of available titles"""
+    list = kwriter.get_available_works()
+    return(list)
+
+
+@app.route("/kant/short_sentence/<string:title>", methods=["GET"])
+def gen_kant_short_sentence(title):
+    if title in kwriter.get_available_works():
+        sentence = kwriter.get_short_sentence(title)
+        return(sentence)
+    else:
+        return('Please submit only titles from /kant/available'), 400
+
+@app.route("/kant/sentence/<string:title>", methods=["GET"])
+def gen_kant_sentence(title):
+    if title in kwriter.get_available_works():
+        sentence = kwriter.get_sentence(title)
+        return(sentence)
+    else:
+        return('Please submit only titles from /kant/available'), 400
+
 @app.errorhandler(404)
 def not_found(error):
     """Handles 404 errors"""
-    return('error 404: Not found')
+    return('error 404: Not found'), 404
 
  
 if __name__ == "__main__":
