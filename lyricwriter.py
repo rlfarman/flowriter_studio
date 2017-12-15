@@ -83,9 +83,9 @@ def get_artist_lyrics(artist_id):
 
 # Builds a markov model for an artist
 def build_model(artist_id):
-    log.info('Generating new model')
     lyrics = get_artist_lyrics(artist_id)
     model = markovify.NewlineText(lyrics)
+    log.info('Generating new model')
     write_model(model, artist_id)
     return model
 
