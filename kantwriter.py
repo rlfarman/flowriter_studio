@@ -1,3 +1,4 @@
+import os.path
 import logging
 import urllib.request
 import hashlib
@@ -71,3 +72,24 @@ def download_work(title, file_name):
     file_ = open(file_name, 'w')
     file_.write(write_buffer)
     file_.close()
+
+
+def work_is_present(title, file_name):
+    """Parameters: title that represents a key in "available_works",
+                   file name that should hold the work
+    Returns: none, downloads work to file_name
+             If file is present or downloaded, return 0
+             If title not in available_works,  return 1"""
+    # Check for valid title
+    if title not in available_works:
+        log.error('Title not available: %s', title)
+        return 1
+    # Check if title already downloaded
+    elif os.path.isfile(file_name):
+        log.info('File alredy present for "%s"', title)
+        return 0
+    # Otherwise, download title to file_name
+    else:
+        log.info('Downloading "%s" to %s', title, file_name)
+        download_work(title, file_name)
+        return 0
