@@ -2,6 +2,8 @@ import os.path
 import logging
 import urllib.request
 import hashlib
+import markovify
+import json
 
 
 logging.basicConfig(level=logging.INFO)
@@ -93,3 +95,38 @@ def work_is_present(title, file_name):
         log.info('Downloading "%s" to %s', title, file_name)
         download_work(title, file_name)
         return 0
+
+
+# Modified from lyricwriter module
+def build_model(file_name, model_name):
+    """Parameters: file name of text to modeled
+                   file name for saving model
+    Returns: a markovify model object, and writes model to file_name+.model"""
+    with open(file_name) as file_:
+        text = file_.read()
+    log.debug('Creating model from %s', file_name)
+    model = markovify.Text(text)
+    write_model(model, model_name)
+    return model
+
+
+# Modified from lyricwriter module
+def read_model(model_name):
+    """Parameters: file name of saved model
+    Returns: model object"""
+    with open(model_name, 'r') as f:
+        model_json = json.load(f)
+        model = markovify.NewlineText.from_json(
+            model_json
+        )
+        return model
+
+
+# Modified from lyricwriter module
+def write_model(model, model_name):
+    """Parameters: model object, file name of model's *original text*
+    Returns: none, writes model to .model file in json format"""
+    model_json = model.to_json()
+    log.debug('Writing model to %s', model_name)
+    with open(model_name, 'w') as f:
+        json.dump(model_json, f)
