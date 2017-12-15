@@ -130,3 +130,13 @@ def write_model(model, model_name):
     log.debug('Writing model to %s', model_name)
     with open(model_name, 'w') as f:
         json.dump(model_json, f)
+
+
+def get_model(title):
+    """Parameters: string that represents title in "available_works"
+    Returns: Markovify object of that title"""
+    file_name = get_file_name(title)
+    model_name = get_model_name(title)
+    work_is_present(title, file_name)
+    model = model_is_present(title)
+    return model
