@@ -83,7 +83,7 @@ def get_artist_lyrics(artist_id):
 
 # Builds a markov model for an artist
 def build_model(artist_id):
-    log.info('Generating new model for %s', artist_id)
+    log.info('Generating new model')
     lyrics = get_artist_lyrics(artist_id)
     model = markovify.NewlineText(lyrics)
     write_model(model, artist_id)
@@ -162,9 +162,9 @@ def main(artist):
     else:
         return("Could not find", artist)
 
-    log.info('Artist %s found, searching for lyrics', q)
+    log.info('Artist "%s" found, searching for lyrics', q)
     model = get_model(artist_id)
-    log.info('Generating lyrics for %s', q)
+    log.info('Generating lyrics for "%s"', q)
 
     sentence = make_sentence(model)
     return sentence
