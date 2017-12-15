@@ -1,6 +1,7 @@
 import rosswriter as rwriter
 import plotwriter as pwriter
 import lyricwriter as lwriter
+import promptwriter as prwriter
 
 from flask import Flask, request
 
@@ -26,6 +27,12 @@ def gen_plot(plot_point):
 def gen_lyrics(artist):
     """Takes an artist name as an input. Returns three lines of generated lyrics based on the artist."""
     sentence = lwriter.main(artist)
+    return(sentence)
+
+@app.route("/prompt", methods=["GET"])
+def gen_lyrics():
+    """Takes no input. Returns a generated writing prompt."""
+    sentence = prwriter.main()
     return(sentence)
 
 @app.errorhandler(404)
