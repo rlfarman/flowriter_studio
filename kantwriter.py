@@ -72,6 +72,7 @@ def download_work(title, file_name):
         # Otherwise check to see if line is end of info section
         else:
             in_body = info_end in line
+    write_buffer.encode('utf-8')
     file_ = open(file_name, 'w')
     file_.write(write_buffer)
     file_.close()
