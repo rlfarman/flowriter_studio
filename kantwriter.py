@@ -12,9 +12,9 @@ log = logging.getLogger(__name__)
 
 
 available_works = {
-    'critique of pure reason': 'http://www.gutenberg.org/cache/epub/4280/pg4280.txt',
+    'critique of pure reason': 'http://www.gutenberg.org/files/4280/4280-0.txt',
     'critique of practical reason': 'http://www.gutenberg.org/cache/epub/5683/pg5683.txt'
-    }
+}
 
 
 def get_available_works():
@@ -107,7 +107,7 @@ def model_is_present(title):
         model = read_model(model_name)
     else:
         log.info('Creating and saving model of %s to %s', title, model_name)
-        model =  build_model(file_name, model_name)
+        model = build_model(file_name, model_name)
     return model
 
 
